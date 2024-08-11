@@ -9,7 +9,7 @@ import{
     SendApprovalPage,
     ApprovalsPage,
     AddClientPage
-} from "./routes";
+} from "./Routes.js";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
