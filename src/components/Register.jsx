@@ -15,21 +15,31 @@ export const Register = () => {
         e.preventDefault();
 
         try {
-            // Make an API request to the login endpoint
-            const response = await axios.post('https://ajp.afreebmart.com/api/register', {
+            // Configure axios for the request
+            const axiosInstance = axios.create({
+                baseURL: 'https://ajp.afreebmart.com/api',
+                withCredentials: true, // Include credentials if your API requires it
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            });
+
+            // Make an API request to the register endpoint
+            const response = await axiosInstance.post('/register', {
                 name,
                 email,
                 password,
             });
 
-            // Handle the response, e.g., store the token in local storage or state
-            const userData = { email, id: Date.now() }; // Add a unique id
+            // Handle the response
+            const userData = { email, id: response.data.id }; // Use the id from the response if available
             login(userData);
             navigate('/dashboard');
             console.log(response.data);
         } catch (error) {
             // Handle any errors that occur during the API request
-            console.error(error);
+            console.error('Registration error:', error.response ? error.response.data : error.message);
         }
     };
 
