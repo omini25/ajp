@@ -102,6 +102,7 @@ export const SendApproval = () => {
                     reader.readAsText(pdfResponse.data);
                 }
             } catch (pdfError) {
+                navigate('/approvals');
                 console.error('Error generating PDF:', pdfError);
                 toast.error('Failed to generate PDF');
             }
@@ -137,6 +138,7 @@ export const SendApproval = () => {
             });
             toast.success('Edited PDF uploaded successfully');
         } catch (error) {
+            navigate('/approvals');
             console.error('Error uploading edited PDF:', error);
             // toast.error('Failed to upload edited PDF');
         }
