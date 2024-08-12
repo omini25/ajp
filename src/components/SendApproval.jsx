@@ -104,7 +104,6 @@ export const SendApproval = () => {
             } catch (pdfError) {
                 navigate('/approvals');
                 console.error('Error generating PDF:', pdfError);
-                toast.error('Failed to generate PDF');
             }
 
         } catch (error) {
